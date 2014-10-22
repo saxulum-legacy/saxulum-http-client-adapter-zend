@@ -6,11 +6,11 @@ use Zend\Http\Client;
 use Zend\Http\Headers;
 use Zend\Http\Request as ZendRequest;
 use Zend\Http\Response as ZendResponse;
-use Saxulum\HttpClient\HttpInterface;
+use Saxulum\HttpClient\HttpClientInterface;
 use Saxulum\HttpClient\Request;
 use Saxulum\HttpClient\Response;
 
-class HttpClient implements HttpInterface
+class HttpClient implements HttpClientInterface
 {
     /**
      * @var Client

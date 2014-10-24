@@ -34,7 +34,7 @@ class HttpClient implements HttpClientInterface
     public function request(Request $request)
     {
         $headers = new Headers();
-        $headers->addHeaders($request->getHeaders());
+        $headers->addHeaders($this->prepareHeaders($request));
 
         $zendRequest = new ZendRequest();
         $zendRequest->setVersion($request->getProtocolVersion());
@@ -53,5 +53,20 @@ class HttpClient implements HttpClientInterface
             $zendResponse->getHeaders()->toArray(),
             $zendResponse->getContent()
         );
+    }
+
+    /**
+     * @param  Request $request
+     * @return array
+     */
+    protected function prepareHeaders(Request $request)
+    {
+        $headers = $request->getHeaders();
+
+        if (null !== $request->getContent() && !isset($headers['Content-Type'])) {
+            $headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
+
+        return $headers;
     }
 }

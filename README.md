@@ -35,7 +35,7 @@ $response = $httpClient->request(new Request(
 ));
 ```
 
-You can inject your own zend browser instance while creating the http client instance.
+You can inject your own zend client instance while creating the http client instance.
 
 ``` {.php}
 use Zend\Http\Client;
